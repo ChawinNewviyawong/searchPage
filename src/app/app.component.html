@@ -1,147 +1,145 @@
-<app-layout>
-  <div class="container">
-    <div class="row">
-      <h5>
-        <dt>ค้นหาผู้รับอนุญาต</dt>
-      </h5>
+<nav class="navbar navbar-expand-md"></nav>
+<div class="container">
+  <div class="row">
+    <h5>
+      <dt>ค้นหาผู้รับอนุญาต</dt>
+    </h5>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <label>เลขที่นิติบุคคล</label>
+      <input type="text" class="form-control" id="entitynumber" placeholder="1234567890">
     </div>
-    <br>
-    <div class="row">
-      <div class="col-md-6">
-        <label>เลขที่นิติบุคคล</label>
-        <input type="text" class="form-control" id="entitynumber" placeholder="1234567890">
-      </div>
-      <div class="col-md-6">
-        <label>ชื่อผู้รับอนุญาต</label>
-        <input type="text" class="form-control" id="username" placeholder="ชื่อ-นามสกุล">
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-md-3">
-        <label>ประเภทใบอนุญาต</label>
-        <div class="dropdown">
-          <button type="button" class="btn btn-primary col-md-12 dropdown-toggle" data-toggle="dropdown">
-              เลือกประเภทใบอนุญาต
-          </button>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <label>แบบใบอนุญาต</label>
-        <div class="dropdown">
-          <button type="button" class="btn btn-primary col-md-12 dropdown-toggle" data-toggle="dropdown">
-              เลือกแบบใบอนุญาต
-          </button>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <label>เลขที่ใบอนุญาต</label>
-        <input type="text" class="form-control" id="licensenumber" placeholder="1234567890">
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-md-6">
-        <label>บริการที่ได้รับอนุญาต</label>
-        <div class="dropdown">
-          <button type="button" class="btn btn-primary col-md-12 dropdown-toggle" data-toggle="dropdown">
-              เลือกบริการที่ได้รับอนุญาต
-          </button>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <label>ปีที่ได้รับอนุญาต</label>
-        <div class="input-group">
-          <input type="text" class="form-control" id="year" placeholder="2562">
-          <div class="input-group-append">
-            <button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-md-6">
-        <label>วันที่ได้รับอนุญาต</label>
-        <div class="row">
-          <div class="col-md-5">
-            <input type="text" class="form-control" id="startdate1" placeholder="วัน/เดือน/ปี">
-            <script>
-              $('#startdate1').datepicker({
-                uiLibrary: 'bootstrap4',
-                format: 'dd/mm/yyyy'
-              });
-            </script>
-          </div>
-          <div class="col-md-2 text-center">
-            <label>ถึง</label>
-          </div>
-          <div class="col-md-5">
-            <input type="text" class="form-control" id="startdate2" placeholder="วัน/เดือน/ปี">
-            <script>
-              $('#startdate2').datepicker({
-                uiLibrary: 'bootstrap4',
-                format: 'dd/mm/yyyy',
-                minDate: '#startdate1'
-              });
-            </script>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <label>วันที่สิ้นสุดการอนุญาต</label>
-        <div class="row">
-          <div class="col-md-5">
-            <input type="text" class="form-control" id="enddate1" placeholder="วัน/เดือน/ปี">
-            <script>
-              $('#enddate1').datepicker({
-                uiLibrary: 'bootstrap4',
-                format: 'dd/mm/yyyy'
-              });
-            </script>
-          </div>
-          <div class="col-md-2 text-center">
-            <label>ถึง</label>
-          </div>
-          <div class="col-md-5">
-            <input type="text" class="form-control" id="enddate2" placeholder="วัน/เดือน/ปี">
-            <script>
-              $('#enddate2').datepicker({
-                uiLibrary: 'bootstrap4',
-                format: 'dd/mm/yyyy'
-              });
-            </script>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <button type="button" class="btn btn-primary" id="searchbtn">ค้นหา</button>
-      </div>
-    </div>
-    <br>
-    <div class="container">
-      <table class="table text-center">
-        <thead class="thead-dark">
-          <tr>
-            <th>ลำดับ</th>
-            <th>เลขที่นิติบุคคล</th>
-            <th>ชื่อบริษัท</th>
-            <th>ประเภทใบอนุญาต</th>
-            <th>เลขที่ใบอนุญาต</th>
-            <th>บริการที่ได้รับอนุญาต</th>
-            <th>ปีที่ได้รับอนุญาต</th>
-            <th>วันที่ได้รับอนุญาต</th>
-            <th>วันที่สิ้นสุดการอนุญาต</th>
-            <th>เงื่อนไข</th>
-          </tr>
-        </thead>
-      </table>
+    <div class="col-md-6">
+      <label>ชื่อผู้รับอนุญาต</label>
+      <input type="text" class="form-control" id="username" placeholder="ชื่อ-นามสกุล">
     </div>
   </div>
-</app-layout>
-
+  <br>
+  <div class="row">
+    <div class="col-md-3">
+      <label>ประเภทใบอนุญาต</label>
+      <div class="dropdown">
+        <button type="button" class="btn btn-primary col-md-12 dropdown-toggle" data-toggle="dropdown">
+          เลือกประเภทใบอนุญาต
+        </button>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label>แบบใบอนุญาต</label>
+      <div class="dropdown">
+        <button type="button" class="btn btn-primary col-md-12 dropdown-toggle" data-toggle="dropdown">
+          เลือกแบบใบอนุญาต
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label>เลขที่ใบอนุญาต</label>
+      <input type="text" class="form-control" id="licensenumber" placeholder="1234567890">
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <label>บริการที่ได้รับอนุญาต</label>
+      <div class="dropdown">
+        <button type="button" class="btn btn-primary col-md-12 dropdown-toggle" data-toggle="dropdown">
+          เลือกบริการที่ได้รับอนุญาต
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label>ปีที่ได้รับอนุญาต</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="year" placeholder="2562">
+        <div class="input-group-append">
+          <button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <label>วันที่ได้รับอนุญาต</label>
+      <div class="row">
+        <div class="col-md-5">
+          <input type="text" class="form-control" id="startdate1" placeholder="วัน/เดือน/ปี">
+          <script>
+            $('#startdate1').datepicker({
+              uiLibrary: 'bootstrap4',
+              format: 'dd/mm/yyyy'
+            });
+          </script>
+        </div>
+        <div class="col-md-2 text-center">
+          <label>ถึง</label>
+        </div>
+        <div class="col-md-5">
+          <input type="text" class="form-control" id="startdate2" placeholder="วัน/เดือน/ปี">
+          <script>
+            $('#startdate2').datepicker({
+              uiLibrary: 'bootstrap4',
+              format: 'dd/mm/yyyy',
+              minDate: '#startdate1'
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label>วันที่สิ้นสุดการอนุญาต</label>
+      <div class="row">
+        <div class="col-md-5">
+          <input type="text" class="form-control" id="enddate1" placeholder="วัน/เดือน/ปี">
+          <script>
+            $('#enddate1').datepicker({
+              uiLibrary: 'bootstrap4',
+              format: 'dd/mm/yyyy'
+            });
+          </script>
+        </div>
+        <div class="col-md-2 text-center">
+          <label>ถึง</label>
+        </div>
+        <div class="col-md-5">
+          <input type="text" class="form-control" id="enddate2" placeholder="วัน/เดือน/ปี">
+          <script>
+            $('#enddate2').datepicker({
+              uiLibrary: 'bootstrap4',
+              format: 'dd/mm/yyyy'
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button type="button" class="btn btn-primary" id="searchbtn">ค้นหา</button>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <table class="table text-center">
+      <thead class="thead-dark">
+        <tr>
+          <th>ลำดับ</th>
+          <th>เลขที่นิติบุคคล</th>
+          <th>ชื่อบริษัท</th>
+          <th>ประเภทใบอนุญาต</th>
+          <th>เลขที่ใบอนุญาต</th>
+          <th>บริการที่ได้รับอนุญาต</th>
+          <th>ปีที่ได้รับอนุญาต</th>
+          <th>วันที่ได้รับอนุญาต</th>
+          <th>วันที่สิ้นสุดการอนุญาต</th>
+          <th>เงื่อนไข</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
