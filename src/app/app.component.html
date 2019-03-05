@@ -20,18 +20,24 @@
   <div class="row">
     <div class="col-md-3">
       <label>ประเภทใบอนุญาต</label>
-      <div class="dropdown">
-        <button type="button" class="btn btn-primary col-md-12 dropdown-toggle" data-toggle="dropdown">
-          เลือกประเภทใบอนุญาต
-        </button>
-      </div>
+      <select class="form-control" id="sel1">
+        <option>เลือกประเภทใบอนุญาต</option>
+        <option>ประเภทที่ 1</option>
+        <option>ประเภทที่ 2</option>
+        <option>ประเภทที่ 3</option>
+        <option>ประเภทที่ 4</option>
+      </select>
     </div>
     <div class="col-md-3">
       <label>แบบใบอนุญาต</label>
       <div class="dropdown">
-        <button type="button" class="btn btn-primary col-md-12 dropdown-toggle" data-toggle="dropdown">
-          เลือกแบบใบอนุญาต
-        </button>
+        <select class="form-control" id="sel1">
+          <option>เลือกแบบใบอนุญาต</option>
+          <option>แบบที่ 1</option>
+          <option>แบบที่ 2</option>
+          <option>แบบที่ 3</option>
+          <option>แบบที่ 4</option>
+        </select>
       </div>
     </div>
     <div class="col-md-6">
@@ -43,21 +49,24 @@
   <div class="row">
     <div class="col-md-6">
       <label>บริการที่ได้รับอนุญาต</label>
-      <div class="dropdown">
-        <button type="button" class="btn btn-primary col-md-12 dropdown-toggle" data-toggle="dropdown">
-          เลือกบริการที่ได้รับอนุญาต
-        </button>
-      </div>
+      <select class="form-control" id="sel1">
+          <option>เลือกบริการที่ได้รับอนุญาต</option>
+          <option>บริการที่ 1</option>
+          <option>บริการที่ 2</option>
+          <option>บริการที่ 3</option>
+          <option>บริการที่ 4</option>
+        </select>
     </div>
     <div class="col-md-6">
-      <label>ปีที่ได้รับอนุญาต</label>
-      <div class="input-group">
-        <input type="text" class="form-control" id="year" placeholder="2562">
-        <div class="input-group-append">
-          <button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-            <span class="sr-only">Toggle Dropdown</span>
-          </button>
-        </div>
+      <div ng-controller="yearselecter">
+        <label>ปีที่ได้รับอนุญาต</label>
+        <select class="form-control">
+          <option>เลือกปีที่ได้รับอนุญาต</option>
+          <option>2562</option>
+          <option>2561</option>
+          <option>2560</option>
+          <option>2559</option>
+        </select>
       </div>
     </div>
   </div>
@@ -66,7 +75,7 @@
     <div class="col-md-6">
       <label>วันที่ได้รับอนุญาต</label>
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
           <input type="text" class="form-control" id="startdate1" placeholder="วัน/เดือน/ปี">
           <script>
             $('#startdate1').datepicker({
@@ -75,10 +84,7 @@
             });
           </script>
         </div>
-        <div class="col-md-2 text-center">
-          <label>ถึง</label>
-        </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
           <input type="text" class="form-control" id="startdate2" placeholder="วัน/เดือน/ปี">
           <script>
             $('#startdate2').datepicker({
@@ -93,7 +99,7 @@
     <div class="col-md-6">
       <label>วันที่สิ้นสุดการอนุญาต</label>
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
           <input type="text" class="form-control" id="enddate1" placeholder="วัน/เดือน/ปี">
           <script>
             $('#enddate1').datepicker({
@@ -102,13 +108,10 @@
             });
           </script>
         </div>
-        <div class="col-md-2 text-center">
-          <label>ถึง</label>
-        </div>
-        <div class="col-md-5">
-          <input type="text" class="form-control" id="enddate2" placeholder="วัน/เดือน/ปี">
+        <div class="col-md-6">
+          <input type="text" class="form-control" id="enddate1" placeholder="วัน/เดือน/ปี">
           <script>
-            $('#enddate2').datepicker({
+            $('#enddate1').datepicker({
               uiLibrary: 'bootstrap4',
               format: 'dd/mm/yyyy'
             });
