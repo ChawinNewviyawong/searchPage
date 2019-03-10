@@ -76,12 +76,10 @@
       <label>วันที่ได้รับอนุญาต</label>
       <div class="row">
         <div class="col-md-6">
-          <input type="text" class="form-control" id="startdate1" placeholder="วัน/เดือน/ปี">
-          <script>
-            $('#startdate1').datepicker({
-              uiLibrary: 'bootstrap4',
-              format: 'dd/mm/yyyy'
-            });
+          <input type="text" class="form-control" id="startdate1"  data-provide="datepicker">
+          <script src="../../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+          <script type="text/javascript">
+            $('#startdate1').datepicker();
           </script>
         </div>
         <div class="col-md-6">
