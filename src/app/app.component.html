@@ -10,10 +10,16 @@
     <div class="col-md-6">
       <label>เลขที่นิติบุคคล</label>
       <input type="text" class="form-control" id="entitynumber" placeholder="1234567890">
+      <div class="invalid-feedback">
+        โปรดกรอกเลขที่นิติบุคคล
+      </div>
     </div>
     <div class="col-md-6">
       <label>ชื่อผู้รับอนุญาต</label>
-      <input type="text" class="form-control" id="username" placeholder="ชื่อ-นามสกุล">
+      <input type="text" class="form-control" id="fullname" placeholder="ชื่อ-นามสกุล">
+      <div class="invalid-feedback">
+        โปรดกรอกชื่อผู้รับอนุญาต
+      </div>
     </div>
   </div>
   <br>
@@ -75,45 +81,35 @@
     <div class="col-md-6">
       <label>วันที่ได้รับอนุญาต</label>
       <div class="row">
-        <div class="col-md-6">
-          <input type="text" class="form-control" id="startdate1"  data-provide="datepicker">
-          <script src="../../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
-          <script type="text/javascript">
+        <!-- <div class="col-md-*">
+          <input type="text" class="form-control" id="startdate1" placeholder="วัน/เดือน/ปี" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+          <script>
             $('#startdate1').datepicker();
           </script>
         </div>
-        <div class="col-md-6">
-          <input type="text" class="form-control" id="startdate2" placeholder="วัน/เดือน/ปี">
+        <label class="col-md-1 form-control text-center">ถึง</label>
+        <div class="col-md-*">
+          <input type="text" class="form-control" id="startdate2" placeholder="วัน/เดือน/ปี" data-provide="datepicker" data-date-format="dd/mm/yyyy">
           <script>
-            $('#startdate2').datepicker({
-              uiLibrary: 'bootstrap4',
-              format: 'dd/mm/yyyy',
-              minDate: '#startdate1'
-            });
+            $('#startdate2').datepicker();
           </script>
+        </div> -->
+        <div class="col-md-12">
+          <div class="input-daterange input-group" id="startDatepicker">
+            <input type="text" class="input form-control" id="startDate1">
+            <input type="text" class="input form-control" id="startDate2">
+          </div>
         </div>
       </div>
     </div>
     <div class="col-md-6">
       <label>วันที่สิ้นสุดการอนุญาต</label>
       <div class="row">
-        <div class="col-md-6">
-          <input type="text" class="form-control" id="enddate1" placeholder="วัน/เดือน/ปี">
-          <script>
-            $('#enddate1').datepicker({
-              uiLibrary: 'bootstrap4',
-              format: 'dd/mm/yyyy'
-            });
-          </script>
-        </div>
-        <div class="col-md-6">
-          <input type="text" class="form-control" id="enddate1" placeholder="วัน/เดือน/ปี">
-          <script>
-            $('#enddate1').datepicker({
-              uiLibrary: 'bootstrap4',
-              format: 'dd/mm/yyyy'
-            });
-          </script>
+        <div class="col-md-12">
+          <div class="input-daterange input-group"  id="endDatepicker">
+            <input type="text" class="input form-control" id="endDate1">
+            <input type="text" class="input form-control" id="endDate2">
+          </div>
         </div>
       </div>
     </div>
