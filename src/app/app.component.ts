@@ -41,7 +41,8 @@ export class AppComponent {
 
     $('#startDatepicker,#endDatepicker').datepicker({
       format: 'dd/mm/yyyy',
-      language: 'th-th'
+      language: 'th',
+      thaiyear: true
     });
 
   }
