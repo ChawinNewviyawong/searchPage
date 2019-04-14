@@ -12,7 +12,23 @@ declare var $: any;
 export class AppComponent implements OnInit {
 
   title = 'Search';
-
+  searchlicense: any = {
+    "entitynumber":"",
+    "name":"",
+    "licensecategory":"",
+    "licenseform":"",
+    "licensenumber":"",
+    "servicecategory":"",
+    "yearcategory":"",
+    "dateofissue": {
+      "startdate":"",
+      "enddate":""
+    },
+    "dateofexpire": {
+      "startdate":"",
+      "enddate":""
+    }
+  }
   constructor(private http: HttpService) {}
 
   ngOnInit(){
@@ -50,6 +66,26 @@ export class AppComponent implements OnInit {
       thaiyear: true
     });
 
+  }
+
+  getData(entitynumber: string, fullname: string, licensecategory: string, licenseform: string, licensenumber: string, servicecategory: string, yearcategory: string) {
+    if (licensecategory == "เลือกประเภทใบอนุญาต") licensecategory = ""
+    if (licenseform == "เลือกแบบใบอนุญาต") licenseform = ""
+    if (servicecategory == "เลือกบริการที่ได้รับอนุญาต") servicecategory = ""
+    if (yearcategory == "เลือกปีที่ได้รับอนุญาต") yearcategory = ""
+    this.searchlicense.entitynumber = entitynumber
+    this.searchlicense.name = fullname
+    this.searchlicense.licensecategory = licensecategory
+    this.searchlicense.licenseform = licenseform
+    this.searchlicense.licensenumber = licensenumber
+    this.searchlicense.servicecategory = servicecategory
+    this.searchlicense.yearcategory = yearcategory
+    // this.searchlicense.dateofissue.startdate = ...
+    // this.searchlicense.dateofissue.enddate = ...
+    // this.searchlicense.dateofexpire.startdate = ...
+    // this.searchlicense.dateofexpire.enddate ...
+    
+    this.http.getJson(this.searchlicense)
   }
 
 }

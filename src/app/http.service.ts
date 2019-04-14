@@ -24,15 +24,23 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  get() {
-    return this.http.get(this.urlApi)
+  get(entitynumber, fullname, licensecategory, licenseform, licensenumber, servicecategory, yearcategory) {
+    // return this.http.get(this.urlApi)
+    //   .pipe(
+    //     catchError(this.handleError)
+    //   );
+    console.log(entitynumber + " " + fullname + " " + licensecategory + " " + licenseform + " " + licensenumber + " " + servicecategory + " " + yearcategory)
+  }
+
+  getJson(json) {
+    console.log(json);
+  }
+
+  post(params) {
+    return this.http.post(this.urlApi, params, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
-  }
-
-  post(endpoint, params) {
-    return this.http.post(this.urlApi + endpoint, params);
   }
 
   private handleError(error: HttpErrorResponse) {

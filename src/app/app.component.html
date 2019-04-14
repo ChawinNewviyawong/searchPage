@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md"></nav>
-<div class="container">
+<app-nav></app-nav>
+<form class="container">
   <div class="row">
     <h5>
       <dt>ค้นหาผู้รับอนุญาต</dt>
@@ -9,24 +9,18 @@
   <div class="row">
     <div class="col-md-6">
       <label>เลขที่นิติบุคคล</label>
-      <input type="text" class="form-control" id="entitynumber" placeholder="1234567890">
-      <div class="invalid-feedback">
-        โปรดกรอกเลขที่นิติบุคคล
-      </div>
+      <input #entitynumber id="entitynumber" type="text" class="form-control" placeholder="1234567890">
     </div>
     <div class="col-md-6">
       <label>ชื่อผู้รับอนุญาต</label>
-      <input type="text" class="form-control" id="fullname" placeholder="ชื่อ-นามสกุล">
-      <div class="invalid-feedback">
-        โปรดกรอกชื่อผู้รับอนุญาต
-      </div>
+      <input #fullname id="fullname" type="text" class="form-control" placeholder="ชื่อ-นามสกุล">
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-md-3">
       <label>ประเภทใบอนุญาต</label>
-      <select class="form-control" id="sel1">
+      <select #licensecategory id="licensecategory" class="form-control" >
         <option>เลือกประเภทใบอนุญาต</option>
         <option>ประเภทที่ 1</option>
         <option>ประเภทที่ 2</option>
@@ -37,7 +31,7 @@
     <div class="col-md-3">
       <label>แบบใบอนุญาต</label>
       <div class="dropdown">
-        <select class="form-control" id="sel1">
+        <select #licenseform id="licenseform" class="form-control" >
           <option>เลือกแบบใบอนุญาต</option>
           <option>แบบที่ 1</option>
           <option>แบบที่ 2</option>
@@ -48,14 +42,14 @@
     </div>
     <div class="col-md-6">
       <label>เลขที่ใบอนุญาต</label>
-      <input type="text" class="form-control" id="licensenumber" placeholder="1234567890">
+      <input #licensenumber id="licensenumber" type="text" class="form-control" placeholder="1234567890">
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-md-6">
       <label>บริการที่ได้รับอนุญาต</label>
-      <select class="form-control" id="sel1">
+      <select #servicecategory id="servicecategory" class="form-control" >
           <option>เลือกบริการที่ได้รับอนุญาต</option>
           <option>บริการที่ 1</option>
           <option>บริการที่ 2</option>
@@ -66,7 +60,7 @@
     <div class="col-md-6">
       <div ng-controller="yearselecter">
         <label>ปีที่ได้รับอนุญาต</label>
-        <select class="form-control">
+        <select #yearcategory id="yearcategory" class="form-control" >
           <option>เลือกปีที่ได้รับอนุญาต</option>
           <option>2562</option>
           <option>2561</option>
@@ -104,7 +98,7 @@
   <br>
   <div class="row">
     <div class="col-md-12 text-center">
-      <button type="button" class="btn btn-primary" id="searchbtn">ค้นหา</button>
+      <button (click)="getData(entitynumber.value, fullname.value, licensecategory.value, licenseform.value, licensenumber.value, servicecategory.value, yearcategory.value)" type="button" class="btn btn-primary" id="searchbtn">ค้นหา</button>
     </div>
   </div>
   <br>
@@ -126,4 +120,4 @@
       </thead>
     </table>
   </div>
-</div>
+</form>
