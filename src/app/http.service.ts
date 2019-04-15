@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable, throwError, Observer } from 'rxjs';
+import { catchError, retry, map } from 'rxjs/operators';
 
 export interface DataForm {
   field1: string;
@@ -20,16 +20,17 @@ const httpOptions = {
 @Injectable()
 export class HttpService {
 
-  private urlApi = 'http://localhost:4200/';
+  private urlApi = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) { }
 
-  get(entitynumber, fullname, licensecategory, licenseform, licensenumber, servicecategory, yearcategory) {
+  get(){
     // return this.http.get(this.urlApi)
     //   .pipe(
     //     catchError(this.handleError)
     //   );
-    console.log(entitynumber + " " + fullname + " " + licensecategory + " " + licenseform + " " + licensenumber + " " + servicecategory + " " + yearcategory)
+    return this.http.post(this.urlApi + '/getLicense', '', httpOptions)
+    // console.log(entitynumber + " " + fullname + " " + licensecategory + " " + licenseform + " " + licensenumber + " " + servicecategory + " " + yearcategory)
   }
 
   getJson(json) {

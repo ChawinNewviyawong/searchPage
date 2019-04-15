@@ -85,7 +85,7 @@ export class AppComponent implements OnInit {
     // this.searchlicense.dateofexpire.startdate = ...
     // this.searchlicense.dateofexpire.enddate ...
     
-    this.http.getJson(this.searchlicense)
+    this.http.get()
   }
 
 }
