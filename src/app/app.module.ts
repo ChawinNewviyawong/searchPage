@@ -4,11 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HttpService } from './http.service';
 import { NavComponent } from './nav/nav.component';
+import { TableTemplateComponent } from './table-template/table-template.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    TableTemplateComponent
   ],
   imports: [
     BrowserModule,

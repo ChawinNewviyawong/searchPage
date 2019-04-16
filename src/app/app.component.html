@@ -101,23 +101,6 @@
       <button (click)="getData(entitynumber.value, fullname.value, licensecategory.value, licenseform.value, licensenumber.value, servicecategory.value, yearcategory.value)" type="button" class="btn btn-primary" id="searchbtn">ค้นหา</button>
     </div>
   </div>
-  <br>
-  <div class="container">
-    <table class="table text-center">
-      <thead class="thead-dark">
-        <tr>
-          <th>ลำดับ</th>
-          <th>เลขที่นิติบุคคล</th>
-          <th>ชื่อบริษัท</th>
-          <th>ประเภทใบอนุญาต</th>
-          <th>เลขที่ใบอนุญาต</th>
-          <th>บริการที่ได้รับอนุญาต</th>
-          <th>ปีที่ได้รับอนุญาต</th>
-          <th>วันที่ได้รับอนุญาต</th>
-          <th>วันที่สิ้นสุดการอนุญาต</th>
-          <th>เงื่อนไข</th>
-        </tr>
-      </thead>
-    </table>
-  </div>
 </form>
+<br>
+<app-table-template></app-table-template>
