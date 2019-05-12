@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { Search } from '../domain/search';
@@ -11,13 +11,13 @@ import { SearchService } from '../search.service';
 })
 export class TableTemplateComponent implements OnInit {
 
-  licenses: Search[];
+  @Input() licenses: Search[];
   cols: any[];
+  first: number = 0;
 
   constructor(private searchService: SearchService) { }
 
   ngOnInit() {
-    // this.searchService.getLicense().then(licenses => this.licenses = license);
 
     this.cols = [
       { field: 'entitynumber', header: 'เลขที่นิติบุคคล' },
@@ -31,6 +31,10 @@ export class TableTemplateComponent implements OnInit {
       { field: 'condition', header: 'เงื่อนไข' }
     ]
 
+  }
+
+  reset() {
+    this.first = 0;
   }
 
 }

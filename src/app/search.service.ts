@@ -11,7 +11,10 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   getLicense(){
-    // return this.http.get('').toPromise().then(res => <Search> res.data).then(data => { return data; });
+    return this.http.get<any>('assets/mock/data/licenses-dev.json')
+                    .toPromise()
+                    .then(res => <Search[]>res.data)
+                    .then(data => { return data; });
   }
 
 }

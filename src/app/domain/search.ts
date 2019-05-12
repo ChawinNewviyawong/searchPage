@@ -1,11 +1,12 @@
 export interface Search {
     entitynumber;
-    fullname;
+    company;
     licensecategory;
     licenseform;
     licensenumber;
     service;
     year;
     dayofissue;
-    expiredDate;
+    expireddate;
+    condition;
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HttpService } from './http.service';
+import { SearchService } from './search.service';
+
+import { Search } from '../app/domain/search';
 
 declare var $: any;
 
@@ -12,24 +14,12 @@ declare var $: any;
 export class AppComponent implements OnInit {
 
   title = 'Search';
-  searchlicense: any = {
-    "entitynumber":"",
-    "name":"",
-    "licensecategory":"",
-    "licenseform":"",
-    "licensenumber":"",
-    "servicecategory":"",
-    "yearcategory":"",
-    "dateofissue": {
-      "startdate":"",
-      "enddate":""
-    },
-    "dateofexpire": {
-      "startdate":"",
-      "enddate":""
-    }
-  }
-  constructor(private http: HttpService) {}
+
+  searchform: Search;
+  licenses: Search[];
+  showTable = false;
+
+  constructor(private http: SearchService) {}
 
   ngOnInit(){
 
@@ -68,24 +58,41 @@ export class AppComponent implements OnInit {
 
   }
 
-  getData(entitynumber: string, fullname: string, licensecategory: string, licenseform: string, licensenumber: string, servicecategory: string, yearcategory: string) {
-    if (licensecategory == "เลือกประเภทใบอนุญาต") licensecategory = ""
-    if (licenseform == "เลือกแบบใบอนุญาต") licenseform = ""
-    if (servicecategory == "เลือกบริการที่ได้รับอนุญาต") servicecategory = ""
-    if (yearcategory == "เลือกปีที่ได้รับอนุญาต") yearcategory = ""
-    this.searchlicense.entitynumber = entitynumber
-    this.searchlicense.name = fullname
-    this.searchlicense.licensecategory = licensecategory
-    this.searchlicense.licenseform = licenseform
-    this.searchlicense.licensenumber = licensenumber
-    this.searchlicense.servicecategory = servicecategory
-    this.searchlicense.yearcategory = yearcategory
-    // this.searchlicense.dateofissue.startdate = ...
-    // this.searchlicense.dateofissue.enddate = ...
-    // this.searchlicense.dateofexpire.startdate = ...
-    // this.searchlicense.dateofexpire.enddate ...
+  // getData(entitynumber: string, fullname: string, licensecategory: string, licenseform: string, licensenumber: string, servicecategory: string, yearcategory: string) {
+  //   if (licensecategory == "เลือกประเภทใบอนุญาต") licensecategory = ""
+  //   if (licenseform == "เลือกแบบใบอนุญาต") licenseform = ""
+  //   if (servicecategory == "เลือกบริการที่ได้รับอนุญาต") servicecategory = ""
+  //   if (yearcategory == "เลือกปีที่ได้รับอนุญาต") yearcategory = ""
+  //   this.searchlicense.entitynumber = entitynumber
+  //   this.searchlicense.name = fullname
+  //   this.searchlicense.licensecategory = licensecategory
+  //   this.searchlicense.licenseform = licenseform
+  //   this.searchlicense.licensenumber = licensenumber
+  //   this.searchlicense.servicecategory = servicecategory
+  //   this.searchlicense.yearcategory = yearcategory
+  //   // this.searchlicense.dateofissue.startdate = ...
+  //   // this.searchlicense.dateofissue.enddate = ...
+  //   // this.searchlicense.dateofexpire.startdate = ...
+  //   // this.searchlicense.dateofexpire.enddate ...
     
-    this.http.get()
+  //   this.http.get()
+  // }
+
+  search(entitynumber: string, 
+        fullname: string, 
+        licensecategory: string, 
+        licenseform: string, 
+        licensenumber: string, 
+        servicecategory: string, 
+        yearcategory: string) {
+    this.http.getLicense()
+              .then(licenses => {
+                this.licenses = licenses
+                // check data in licenses. if empty, not show table
+                if(licenses){
+                  this.showTable = true;
+                }
+              });
   }
 
 }

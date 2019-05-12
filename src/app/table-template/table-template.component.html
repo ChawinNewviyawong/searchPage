@@ -1,5 +1,5 @@
 <div class="container">
-  <p-table [columns]="cols" [value]="cars">
+  <p-table [columns]="cols" [value]="licenses" [paginator]="true" [rows]="10" [first]="first">
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th *ngFor="let col of columns">
@@ -7,7 +7,7 @@
         </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-car let-columns="columns">
+    <ng-template pTemplate="body" let-licenses let-columns="columns">
       <tr>
         <td *ngFor="let col of columns">
           {{licenses[col.field]}}
