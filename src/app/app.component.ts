@@ -50,11 +50,32 @@ export class AppComponent implements OnInit {
       return /^[ก-๙]*$/.test(value);
     });
 
-    $('#startDatepicker,#endDatepicker').datepicker({
+    $('#startDateFrom, #startDateTo, #endDateFrom, #endDateTo').datepicker({
       format: 'dd/mm/yyyy',
-      language: 'th',
-      thaiyear: true
+      language: 'th-th',
+      autoclose: true
     });
+
+    $('#startDateFrom')
+      .datepicker()
+      .on('changeDate', function(e) {
+        var startDateFrom = new Date(e.date);
+        $('#startDateTo').datepicker('setStartDate', startDateFrom);
+      });
+
+    $('#startDateTo')
+      .datepicker()
+      .on('changeDate', function(e) {
+        var startDateTo = new Date(e.date);
+        $('#endDateFrom').datepicker('setStartDate', startDateTo);
+      });
+
+    $('#endDateFrom')
+      .datepicker()
+      .on('changeDate', function(e) {
+        var endDateFrom = new Date(e.date);
+        $('#endDateTo').datepicker('setStartDate', endDateFrom);
+      });
 
   }
 
