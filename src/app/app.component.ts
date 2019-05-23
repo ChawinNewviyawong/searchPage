@@ -51,8 +51,8 @@ export class AppComponent implements OnInit {
     });
 
     $('#startDateFrom, #startDateTo, #endDateFrom, #endDateTo').datepicker({
-      format: 'dd/mm/yyyy',
       language: 'th-th',
+      format: 'dd/mm/yyyy',
       autoclose: true
     });
 

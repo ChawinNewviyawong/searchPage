@@ -36,7 +36,7 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js",
               "src/app/bootstrap-datepicker-thai.js",
-              "node_modules/bootstrap-datepicker/locales/bootstrap-datepicker.th.js"
+              "node_modules/bootstrap-datepicker/js/locales/bootstrap-datepicker.th.js"
             ],
             "es5BrowserSupport": true
           },
