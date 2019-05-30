@@ -1,12 +1,12 @@
 export interface Search {
-    entitynumber;
-    company;
-    licensecategory;
-    licenseform;
-    licensenumber;
-    service;
-    year;
-    dayofissue;
-    expireddate;
-    condition;
+    clientID;
+    Name;
+    LicenseGroupType;
+    LicenseType;
+    LicenseNo;
+    ServiceId;
+    EffectiveYear;
+    IssueDate;
+    ExpireDate;
+    FileCondition;
 }

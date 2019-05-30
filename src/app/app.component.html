@@ -9,18 +9,18 @@
   <div class="row">
     <div class="col-md-6">
       <label>เลขที่นิติบุคคล</label>
-      <input #entitynumber id="entitynumber" type="text" class="form-control" placeholder="1234567890">
+      <input #juristicNo id="juristicNo" type="text" class="form-control" placeholder="1234567890">
     </div>
     <div class="col-md-6">
       <label>ชื่อผู้รับอนุญาต</label>
-      <input #fullname id="fullname" type="text" class="form-control" placeholder="ชื่อ-นามสกุล">
+      <input #companyName id="companyName" type="text" class="form-control" placeholder="ชื่อ-นามสกุล">
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-md-3">
       <label>ประเภทใบอนุญาต</label>
-      <select #licensecategory id="licensecategory" class="form-control" >
+      <select #licenseType id="licenseType" class="form-control">
         <option>เลือกประเภทใบอนุญาต</option>
         <option>ประเภทที่ 1</option>
         <option>ประเภทที่ 2</option>
@@ -31,7 +31,7 @@
     <div class="col-md-3">
       <label>แบบใบอนุญาต</label>
       <div class="dropdown">
-        <select #licenseform id="licenseform" class="form-control" >
+        <select #licenseGroupType id="licenseGroupType" class="form-control">
           <option>เลือกแบบใบอนุญาต</option>
           <option>แบบที่ 1</option>
           <option>แบบที่ 2</option>
@@ -42,25 +42,25 @@
     </div>
     <div class="col-md-6">
       <label>เลขที่ใบอนุญาต</label>
-      <input #licensenumber id="licensenumber" type="text" class="form-control" placeholder="1234567890">
+      <input #licenseNo id="licenseNo" type="text" class="form-control" placeholder="1234567890">
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-md-6">
       <label>บริการที่ได้รับอนุญาต</label>
-      <select #servicecategory id="servicecategory" class="form-control" >
-          <option>เลือกบริการที่ได้รับอนุญาต</option>
-          <option>บริการที่ 1</option>
-          <option>บริการที่ 2</option>
-          <option>บริการที่ 3</option>
-          <option>บริการที่ 4</option>
-        </select>
+      <select #service id="service" class="form-control">
+        <option>เลือกบริการที่ได้รับอนุญาต</option>
+        <option>บริการที่ 1</option>
+        <option>บริการที่ 2</option>
+        <option>บริการที่ 3</option>
+        <option>บริการที่ 4</option>
+      </select>
     </div>
     <div class="col-md-6">
       <div ng-controller="yearselecter">
         <label>ปีที่ได้รับอนุญาต</label>
-        <select #yearcategory id="yearcategory" class="form-control" >
+        <select #effectiveYear id="effectiveYear" class="form-control">
           <option>เลือกปีที่ได้รับอนุญาต</option>
           <option>2562</option>
           <option>2561</option>
@@ -80,11 +80,11 @@
             <div class="input-group-prepend">
               <span class="input-group-text">จากวันที่</span>
             </div>
-            <input class="form-control" id="startDateFrom" type="text" placeholder="วัน/เดือน/ปี">
+            <input class="form-control" #issueDateBegin id="issueDateBegin" type="text" placeholder="วัน/เดือน/ปี">
             <div class="input-group-prepend">
               <span class="input-group-text">ถึงวันที่</span>
             </div>
-            <input class="form-control" id="startDateTo" type="text" placeholder="วัน/เดือน/ปี">
+            <input class="form-control" #issueStartDateEnd id="issueStartDateEnd" type="text" placeholder="วัน/เดือน/ปี">
           </div>
         </div>
       </div>
@@ -97,11 +97,11 @@
             <div class="input-group-prepend">
               <span class="input-group-text">จากวันที่</span>
             </div>
-            <input class="form-control" id="endDateFrom" type="text" placeholder="วัน/เดือน/ปี">
+            <input class="form-control" #expireDateBegin id="expireDateBegin" type="text" placeholder="วัน/เดือน/ปี">
             <div class="input-group-prepend">
               <span class="input-group-text">ถึงวันที่</span>
             </div>
-            <input class="form-control" id="endDateTo" type="text" placeholder="วัน/เดือน/ปี">
+            <input class="form-control" #expireDateEnd id="expireDateEnd" type="text" placeholder="วัน/เดือน/ปี">
           </div>
         </div>
       </div>
@@ -110,7 +110,8 @@
   <br>
   <div class="row">
     <div class="col-md-12 text-center">
-      <button (click)="search(entitynumber.value, fullname.value, licensecategory.value, licenseform.value, licensenumber.value, servicecategory.value, yearcategory.value)" type="button" class="btn btn-primary" id="searchbtn">ค้นหา</button>
+      <button (click)="search(companyName.value, effectiveYear.value, expireDateBegin.value, expireDateEnd.value, issueDateBegin.value, issueStartDateEnd.value, juristicNo.value, licenseGroupType.value, licenseNo.value, licenseType.value, service.value)"
+        type="button" class="btn btn-primary" id="searchbtn">ค้นหา</button>
     </div>
   </div>
 </form>

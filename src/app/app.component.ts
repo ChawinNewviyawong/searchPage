@@ -15,17 +15,16 @@ export class AppComponent implements OnInit {
 
   title = 'Search';
 
-  searchform: Search;
-  licenses: Search[];
+  data: Search[];
   showTable = false;
 
-  constructor(private http: SearchService) {}
+  constructor(private searchService: SearchService) { }
 
-  ngOnInit(){
+  ngOnInit() {
 
     function setInputFilter(textbox, inputFilter) {
-      ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
-        textbox.addEventListener(event, function() {
+      ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
+        textbox.addEventListener(event, function () {
           if (inputFilter(this.value)) {
             this.oldValue = this.value;
             this.oldSelectionStart = this.selectionStart;
@@ -38,43 +37,43 @@ export class AppComponent implements OnInit {
       });
     }
 
-    setInputFilter(document.getElementById("entitynumber"), function(value) {
+    setInputFilter(document.getElementById("juristicNo"), function (value) {
       return /^\d*\.?\d*$/.test(value);
     });
 
-    setInputFilter(document.getElementById("licensenumber"), function(value) {
+    setInputFilter(document.getElementById("licenseNo"), function (value) {
       return /^\d*\.?\d*$/.test(value);
     });
 
-    setInputFilter(document.getElementById("fullname"), function(value) {
+    setInputFilter(document.getElementById("companyName"), function (value) {
       return /^[ก-๙]*$/.test(value);
     });
 
-    $('#startDateFrom, #startDateTo, #endDateFrom, #endDateTo').datepicker({
+    $('#issueDateBegin, #issueStartDateEnd, #expireDateBegin, #expireDateEnd').datepicker({
       language: 'th-th',
       format: 'dd/mm/yyyy',
       autoclose: true
     });
 
-    $('#startDateFrom')
+    $('#issueDateBegin')
       .datepicker()
-      .on('changeDate', function(e) {
-        var startDateFrom = new Date(e.date);
-        $('#startDateTo').datepicker('setStartDate', startDateFrom);
+      .on('changeDate', function (e) {
+        var issueDateBegin = new Date(e.date);
+        $('#issueDateBegin').datepicker('setStartDate', issueDateBegin);
       });
 
-    $('#startDateTo')
+    $('#issueStartDateEnd')
       .datepicker()
-      .on('changeDate', function(e) {
-        var startDateTo = new Date(e.date);
-        $('#endDateFrom').datepicker('setStartDate', startDateTo);
+      .on('changeDate', function (e) {
+        var issueDateEnd = new Date(e.date);
+        $('#issueStartDateEnd').datepicker('setStartDate', issueDateEnd);
       });
 
-    $('#endDateFrom')
+    $('#expireDateBegin')
       .datepicker()
-      .on('changeDate', function(e) {
-        var endDateFrom = new Date(e.date);
-        $('#endDateTo').datepicker('setStartDate', endDateFrom);
+      .on('changeDate', function (e) {
+        var expireDateBegin = new Date(e.date);
+        $('#expireDateEnd').datepicker('setStartDate', expireDateBegin);
       });
 
   }
@@ -95,25 +94,47 @@ export class AppComponent implements OnInit {
   //   // this.searchlicense.dateofissue.enddate = ...
   //   // this.searchlicense.dateofexpire.startdate = ...
   //   // this.searchlicense.dateofexpire.enddate ...
-    
+
   //   this.http.get()
   // }
 
-  search(entitynumber: string, 
-        fullname: string, 
-        licensecategory: string, 
-        licenseform: string, 
-        licensenumber: string, 
-        servicecategory: string, 
-        yearcategory: string) {
-    this.http.getLicense()
-              .then(licenses => {
-                this.licenses = licenses
-                // check data in licenses. if empty, not show table
-                if(licenses){
-                  this.showTable = true;
-                }
-              });
+  // {
+  //   "clientID": 0,
+  //   "companyName": "string",
+  //   "effectiveYear": "string",
+  //   "expireDateBegin": "dd/MM/yyyy",
+  //   "expireDateEnd": "dd/MM/yyyy",
+  //   "issueDateBegin": "dd/MM/yyyy",
+  //   "issueStartDateEnd": "dd/MM/yyyy",
+  //   "juristicNo": "string",
+  //   "licenseGroupType": "string",
+  //   "licenseNo": "string",
+  //   "licenseType": "string",
+  //   "serviceId": "string"
+  // }
+  search(companyName: string,
+    effectiveYear: string,
+    expireDateBegin: string,
+    expireDateEnd: string,
+    issueDateBegin: string,
+    issueStartDateEnd: string,
+    juristicNo: string,
+    licenseGroupType: string,
+    licenseNo: string,
+    licenseType: string,
+    serviceId: string) {
+
+      console.log(juristicNo);
+    this.searchService.getLicense(juristicNo)
+      .subscribe(data => {
+        this.data = data
+        // check data in result. if empty, not show table
+        if (data) {
+          this.showTable = true;
+        }
+      });
+
+      console.log(JSON.stringify(this.data));
   }
 
 }

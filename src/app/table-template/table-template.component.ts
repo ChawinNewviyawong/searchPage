@@ -18,7 +18,7 @@ export class TableTemplateComponent implements OnInit {
   constructor(private searchService: SearchService) { }
 
   ngOnInit() {
-
+    
     this.cols = [
       { field: 'entitynumber', header: 'เลขที่นิติบุคคล' },
       { field: 'company', header: 'ชื่อบริษัท' },
