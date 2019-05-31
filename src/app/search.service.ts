@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { Search } from '../app/domain/search';
+import { Response } from '../app/model/search';
 import { environment } from '../environments/environment';
 
 const headers = new HttpHeaders({
@@ -20,7 +20,7 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  getLicense(juristicNo): Observable<Search[]> {
+  getLicense(juristicNo): Observable<Response[]> {
     const url = environment.url + '/client/search';
     const params = {
       juristicNo: juristicNo,
@@ -30,7 +30,7 @@ export class SearchService {
       params: params
     };
     console.log(url);
-    return this.http.get<Search[]>(url, httpOptions)
+    return this.http.get<Response[]>(url, httpOptions)
       .pipe(
         catchError(this.handleError)
       );

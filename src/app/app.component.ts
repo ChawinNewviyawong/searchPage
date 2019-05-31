@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { SearchService } from './search.service';
 
-import { Search } from '../app/domain/search';
+import { Response } from '../app/model/search';
 
 declare var $: any;
 
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 
   title = 'Search';
 
-  data: Search[];
+  data: Response[];
   showTable = false;
 
   constructor(private searchService: SearchService) { }
@@ -103,7 +103,6 @@ export class AppComponent implements OnInit {
     if (licenseNo) body['licenseNo'] = licenseNo;
     if (licenseType) body['licenseType'] = licenseType;
     if (service) body['serviceId'] = service;
-    console.log(JSON.stringify(body));
 
     this.searchService.getLicense(juristicNo)
       .subscribe(data => {
@@ -115,6 +114,7 @@ export class AppComponent implements OnInit {
       });
 
     console.log(JSON.stringify(this.data));
+
   }
 
 }

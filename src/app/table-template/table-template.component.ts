@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
-import { Search } from '../domain/search';
+import { SearchTable } from '../model/search';
 import { SearchService } from '../search.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { SearchService } from '../search.service';
 })
 export class TableTemplateComponent implements OnInit {
 
-  @Input() licenses: Search[];
+  @Input() licenses: SearchTable[];
   cols: any[];
   first: number = 0;
 
