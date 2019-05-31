@@ -20,39 +20,10 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  // getLicense(){
-  //   return this.http.get<any>('assets/mock/data/licenses-dev.json')
-  //                   .toPromise()
-  //                   .then(res => <Search[]>res.data)
-  //                   .then(data => { return data; });
-  // }
-
-  // signin(credentials: any): Observable<any> {
-  //   const body = JSON.stringify(credentials);
-  //   let headers = new Headers({ 'Content-Type': 'application/json' });
-  //   const options = new RequestOptions({ headers: headers });
-  //   return this.http.post(this._signinURL, body, options)
-  //       .map(res => {
-  //         const data = res.json();
-  //         //console.log("data : " + JSON.stringify(data));
-  //         if (data.token) {
-  //           // localStorage.setItem('id', data.id);
-  //           localStorage.setItem('token', data.token);
-  //           localStorage.setItem('apikey', data.key);
-  //           localStorage.setItem('userName', data.doc.username);
-  //           localStorage.setItem('firstname', data.doc.firstname);
-  //           localStorage.setItem('lastname', data.doc.lastname);
-  //           localStorage.setItem('orgId', data.doc.orgId);
-  //           localStorage.setItem('appId', data.doc.appId);
-  //         }
-  //       })
-  //       .catch(this.handleError);
-  // }
-
   getLicense(juristicNo): Observable<Search[]> {
     const url = environment.url + '/client/search';
     const params = {
-      juristicNo: '*'+juristicNo+'*',
+      juristicNo: juristicNo,
     };
     const httpOptions = {
       headers: headers,

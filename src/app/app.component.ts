@@ -45,10 +45,6 @@ export class AppComponent implements OnInit {
       return /^\d*\.?\d*$/.test(value);
     });
 
-    setInputFilter(document.getElementById("companyName"), function (value) {
-      return /^[ก-๙]*$/.test(value);
-    });
-
     $('#issueDateBegin, #issueStartDateEnd, #expireDateBegin, #expireDateEnd').datepicker({
       language: 'th-th',
       format: 'dd/mm/yyyy',
@@ -78,40 +74,6 @@ export class AppComponent implements OnInit {
 
   }
 
-  // getData(entitynumber: string, fullname: string, licensecategory: string, licenseform: string, licensenumber: string, servicecategory: string, yearcategory: string) {
-  //   if (licensecategory == "เลือกประเภทใบอนุญาต") licensecategory = ""
-  //   if (licenseform == "เลือกแบบใบอนุญาต") licenseform = ""
-  //   if (servicecategory == "เลือกบริการที่ได้รับอนุญาต") servicecategory = ""
-  //   if (yearcategory == "เลือกปีที่ได้รับอนุญาต") yearcategory = ""
-  //   this.searchlicense.entitynumber = entitynumber
-  //   this.searchlicense.name = fullname
-  //   this.searchlicense.licensecategory = licensecategory
-  //   this.searchlicense.licenseform = licenseform
-  //   this.searchlicense.licensenumber = licensenumber
-  //   this.searchlicense.servicecategory = servicecategory
-  //   this.searchlicense.yearcategory = yearcategory
-  //   // this.searchlicense.dateofissue.startdate = ...
-  //   // this.searchlicense.dateofissue.enddate = ...
-  //   // this.searchlicense.dateofexpire.startdate = ...
-  //   // this.searchlicense.dateofexpire.enddate ...
-
-  //   this.http.get()
-  // }
-
-  // {
-  //   "clientID": 0,
-  //   "companyName": "string",
-  //   "effectiveYear": "string",
-  //   "expireDateBegin": "dd/MM/yyyy",
-  //   "expireDateEnd": "dd/MM/yyyy",
-  //   "issueDateBegin": "dd/MM/yyyy",
-  //   "issueStartDateEnd": "dd/MM/yyyy",
-  //   "juristicNo": "string",
-  //   "licenseGroupType": "string",
-  //   "licenseNo": "string",
-  //   "licenseType": "string",
-  //   "serviceId": "string"
-  // }
   search(companyName: string,
     effectiveYear: string,
     expireDateBegin: string,
@@ -122,9 +84,27 @@ export class AppComponent implements OnInit {
     licenseGroupType: string,
     licenseNo: string,
     licenseType: string,
-    serviceId: string) {
+    service: string) {
 
-      console.log(juristicNo);
+    if (effectiveYear == 'เลือกปีที่ได้รับอนุญาต') effectiveYear = null;
+    if (licenseGroupType == 'เลือกแบบใบอนุญาต') licenseGroupType = null;
+    if (licenseType == 'เลือกประเภทใบอนุญาต') licenseType = null;
+    if (service == 'เลือกบริการที่ได้รับอนุญาต') service = null;
+
+    let body = {};
+    if (companyName) body['companyName'] = '*' + companyName + '*';
+    if (effectiveYear) body['effectionYear'] = effectiveYear;
+    if (expireDateBegin) body['expireDateBegin'] = expireDateBegin;
+    if (expireDateEnd) body['expireDateEnd'] = expireDateEnd;
+    if (issueDateBegin) body['issueDateBegin'] = issueDateBegin;
+    if (issueStartDateEnd) body['issueStartDateEnd'] = issueStartDateEnd;
+    if (juristicNo) body['juristicNo'] = juristicNo;
+    if (licenseGroupType) body['licenseGroupType'] = licenseGroupType;
+    if (licenseNo) body['licenseNo'] = licenseNo;
+    if (licenseType) body['licenseType'] = licenseType;
+    if (service) body['serviceId'] = service;
+    console.log(JSON.stringify(body));
+
     this.searchService.getLicense(juristicNo)
       .subscribe(data => {
         this.data = data
@@ -134,7 +114,7 @@ export class AppComponent implements OnInit {
         }
       });
 
-      console.log(JSON.stringify(this.data));
+    console.log(JSON.stringify(this.data));
   }
 
 }

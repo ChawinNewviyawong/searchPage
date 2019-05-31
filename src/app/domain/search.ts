@@ -1,10 +1,11 @@
 export interface Search {
-    clientID;
-    Name;
+    No;
+    JuristicNo;
+    CompanyName;
     LicenseGroupType;
     LicenseType;
     LicenseNo;
-    ServiceId;
+    Service;
     EffectiveYear;
     IssueDate;
     ExpireDate;

@@ -20,15 +20,16 @@ export class TableTemplateComponent implements OnInit {
   ngOnInit() {
     
     this.cols = [
-      { field: 'entitynumber', header: 'เลขที่นิติบุคคล' },
-      { field: 'company', header: 'ชื่อบริษัท' },
-      { field: 'licensecategory', header: 'ประเภทใบอนุญาต' },
-      { field: 'licensenumber', header: 'เลขที่ใบอนุญาต' },
-      { field: 'service', header: 'บริการที่ได้รับอนุญาต' },
-      { field: 'year', header: 'ปีที่ได้รับอนุญาต' },
-      { field: 'dayofissue', header: 'วันที่ได้รับอนุญาต' },
-      { field: 'expireddate', header: 'วันที่สิ้นสุดการอนุญาต' },
-      { field: 'condition', header: 'เงื่อนไข' }
+      // { field: 'No', header: 'ลำดับ'},
+      { field: 'JuristicNo', header: 'เลขที่นิติบุคคล' },
+      { field: 'CompanyName', header: 'ชื่อบริษัท' },
+      { field: 'LicenseGroupType', header: 'ประเภทใบอนุญาต' },
+      { field: 'LicenseNo', header: 'เลขที่ใบอนุญาต' },
+      { field: 'ServiceId', header: 'บริการที่ได้รับอนุญาต' },
+      { field: 'EffectiveYear', header: 'ปีที่ได้รับอนุญาต' },
+      { field: 'IssueDate', header: 'วันที่ได้รับอนุญาต' },
+      { field: 'ExpireDate', header: 'วันที่สิ้นสุดการอนุญาต' },
+      { field: 'FileCondition', header: 'เงื่อนไข' }
     ]
 
   }
