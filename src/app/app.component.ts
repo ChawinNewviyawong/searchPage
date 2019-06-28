@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
 import { SearchService } from './search.service';
-
 import { Search } from '../app/model/search';
 
 declare var $: any;
@@ -110,7 +108,6 @@ export class AppComponent implements OnInit {
       .subscribe((response: Search[]) => {
         this.data = response;
         console.log(this.data);
-        // this.mapFields(data);
         // check data in result. if empty, not show table
         if (response) {
           this.showTable = true;
@@ -121,35 +118,6 @@ export class AppComponent implements OnInit {
           console.log('Error Message: ' + message);
         });
 
-  }
-
-  mapFields(datas) {
-    console.log("datas: " + datas);
-     let tableList = [];
-
-    interface ColType {
-      [key: string]: any
-    }
-
-    let index = 1;
-    for (let data of datas) {
-      console.log("data: " + data.data);
-      let item: ColType = {};
-      for (let i = 0; i < data.data.licenseData.Licenses.length; i++) {
-        item.no = index;
-        item.juristicNo = data.data.customerData.Customer.JuristicNo;
-        item.companyName = data.data.customerData.Customer.Name;
-        item.licenseGroupType = data.data.licenseData.Licenses.LicenseGroupType;
-        item.licenseNo = data.data.licenseData.Licenses.LicenseNo;
-        item.serviceId = data.data.licenseData.Licenses.Services[i];
-        item.effectiveYear = data.data.licenseData.Licenses.EffectiveYear;
-        item.issueDate = data.data.licenseData.Licenses.IssueDate;
-        item.expireDate = data.data.licenseData.Licenses.ExpireDate;
-        item.fileCondition = data.data.licenseData.Licenses.FileCondition;
-        tableList.push(item);
-        index++;
-      }
-    }
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="container">
-  <p-table [value]="licensesList" [paginator]="true" [rows]="10" [first]="first">
+  <p-table [value]="this.licensesList.license" [paginator]="true" [rows]="10" [first]="first">
     <ng-template pTemplate="header">
       <tr>
         <th>เลขที่</th>
@@ -14,8 +14,8 @@
         <th>เงื่อนไข</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-licensesList>
-      <tr *ngFor="let data of licensesList">
+    <ng-template pTemplate="body" let-licensesList.license>
+      <tr *ngFor='let data of this.licensesList.license'>
         <td>{{data.no}}</td>
         <td>{{data.juristicNo}}</td>
         <td>{{data.companyName}}</td>
