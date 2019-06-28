@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { SearchService } from './search.service';
 
-import { Response } from '../app/model/search';
+import { Search } from '../app/model/search';
 
 declare var $: any;
 
@@ -14,9 +14,21 @@ declare var $: any;
 export class AppComponent implements OnInit {
 
   title = 'Search';
-
-  data: Response[];
+  form = {
+    companyName: '',
+    effectiveYear: '',
+    expireDateBegin: '',
+    expireDateEnd: '',
+    issueDateBegin: '',
+    issueStartDateEnd: '',
+    juristicNo: '',
+    licenseGroupType: '',
+    licenseNo: '',
+    licenseType: '',
+    service: '',
+  };
   showTable = false;
+  data: Search[];
 
   constructor(private searchService: SearchService) { }
 
@@ -74,47 +86,70 @@ export class AppComponent implements OnInit {
 
   }
 
-  search(companyName: string,
-    effectiveYear: string,
-    expireDateBegin: string,
-    expireDateEnd: string,
-    issueDateBegin: string,
-    issueStartDateEnd: string,
-    juristicNo: string,
-    licenseGroupType: string,
-    licenseNo: string,
-    licenseType: string,
-    service: string) {
+  search(form) {
 
-    if (effectiveYear == 'เลือกปีที่ได้รับอนุญาต') effectiveYear = null;
-    if (licenseGroupType == 'เลือกแบบใบอนุญาต') licenseGroupType = null;
-    if (licenseType == 'เลือกประเภทใบอนุญาต') licenseType = null;
-    if (service == 'เลือกบริการที่ได้รับอนุญาต') service = null;
+    if (form.effectiveYear == 'เลือกปีที่ได้รับอนุญาต') form.effectiveYear = null;
+    if (form.licenseGroupType == 'เลือกแบบใบอนุญาต') form.licenseGroupType = null;
+    if (form.licenseType == 'เลือกประเภทใบอนุญาต') form.licenseType = null;
+    if (form.service == 'เลือกบริการที่ได้รับอนุญาต') form.service = null;
 
     let body = {};
-    if (companyName) body['companyName'] = '*' + companyName + '*';
-    if (effectiveYear) body['effectionYear'] = effectiveYear;
-    if (expireDateBegin) body['expireDateBegin'] = expireDateBegin;
-    if (expireDateEnd) body['expireDateEnd'] = expireDateEnd;
-    if (issueDateBegin) body['issueDateBegin'] = issueDateBegin;
-    if (issueStartDateEnd) body['issueStartDateEnd'] = issueStartDateEnd;
-    if (juristicNo) body['juristicNo'] = juristicNo;
-    if (licenseGroupType) body['licenseGroupType'] = licenseGroupType;
-    if (licenseNo) body['licenseNo'] = licenseNo;
-    if (licenseType) body['licenseType'] = licenseType;
-    if (service) body['serviceId'] = service;
+    if (form.companyName) body['companyName'] = '*' + form.companyName + '*';
+    if (form.effectiveYear) body['effectiveYear'] = form.effectiveYear;
+    if (form.expireDateBegin) body['expireDateBegin'] = form.expireDateBegin;
+    if (form.expireDateEnd) body['expireDateEnd'] = form.expireDateEnd;
+    if (form.issueDateBegin) body['issueDateBegin'] = form.issueDateBegin;
+    if (form.issueStartDateEnd) body['issueStartDateEnd'] = form.issueStartDateEnd;
+    if (form.juristicNo) body['juristicNo'] = form.juristicNo;
+    if (form.licenseGroupType) body['licenseGroupType'] = form.licenseGroupType;
+    if (form.licenseNo) body['licenseNo'] = form.licenseNo;
+    if (form.licenseType) body['licenseType'] = form.licenseType;
+    if (form.service) body['serviceId'] = form.service;
 
-    this.searchService.getLicense(juristicNo)
-      .subscribe(data => {
-        this.data = data
+    this.searchService.getLicense(body)
+      .subscribe((response: Search[]) => {
+        this.data = response;
+        console.log(this.data);
+        // this.mapFields(data);
         // check data in result. if empty, not show table
-        if (data) {
+        if (response) {
           this.showTable = true;
         }
-      });
+      },
+        error => {
+          let message = error;
+          console.log('Error Message: ' + message);
+        });
 
-    console.log(JSON.stringify(this.data));
+  }
 
+  mapFields(datas) {
+    console.log("datas: " + datas);
+     let tableList = [];
+
+    interface ColType {
+      [key: string]: any
+    }
+
+    let index = 1;
+    for (let data of datas) {
+      console.log("data: " + data.data);
+      let item: ColType = {};
+      for (let i = 0; i < data.data.licenseData.Licenses.length; i++) {
+        item.no = index;
+        item.juristicNo = data.data.customerData.Customer.JuristicNo;
+        item.companyName = data.data.customerData.Customer.Name;
+        item.licenseGroupType = data.data.licenseData.Licenses.LicenseGroupType;
+        item.licenseNo = data.data.licenseData.Licenses.LicenseNo;
+        item.serviceId = data.data.licenseData.Licenses.Services[i];
+        item.effectiveYear = data.data.licenseData.Licenses.EffectiveYear;
+        item.issueDate = data.data.licenseData.Licenses.IssueDate;
+        item.expireDate = data.data.licenseData.Licenses.ExpireDate;
+        item.fileCondition = data.data.licenseData.Licenses.FileCondition;
+        tableList.push(item);
+        index++;
+      }
+    }
   }
 
 }

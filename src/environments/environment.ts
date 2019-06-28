@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://api.license.l4a-dev.com/api',
+  url: 'https://api.license.l4a-dev.com',
 };
 
 /*

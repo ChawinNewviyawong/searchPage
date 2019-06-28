@@ -1,17 +1,31 @@
 <div class="container">
-  <p-table [columns]="cols" [value]="licenses" [paginator]="true" [rows]="10" [first]="first">
-    <ng-template pTemplate="header" let-columns>
+  <p-table [value]="licensesList" [paginator]="true" [rows]="10" [first]="first">
+    <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let col of columns">
-          {{col.header}}
-        </th>
+        <th>เลขที่</th>
+        <th>เลขที่นิติบุคคล</th>
+        <th>ชื่อบริษัท</th>
+        <th>ประเภทใบอนุญาต</th>
+        <th>เลขที่ใบอนุญาต</th>
+        <th>บริการที่ได้รับอนุญาต</th>
+        <th>ปีที่ได้รับอนุญาต</th>
+        <th>วันที่ได้รับอนุญาต</th>
+        <th>วันที่สิ้นสุดการอนุญาต</th>
+        <th>เงื่อนไข</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-licenses let-columns="columns">
-      <tr>
-        <td *ngFor="let col of columns">
-          {{licenses[col.field]}}
-        </td>
+    <ng-template pTemplate="body" let-licensesList>
+      <tr *ngFor="let data of licensesList">
+        <td>{{data.no}}</td>
+        <td>{{data.juristicNo}}</td>
+        <td>{{data.companyName}}</td>
+        <td>{{data.licenseGroupType}}</td>
+        <td>{{data.licenseNo}}</td>
+        <td>{{data.serviceId}}</td>
+        <td>{{data.effectiveYear}}</td>
+        <td>{{data.issueDate}}</td>
+        <td>{{data.expireDate}}</td>
+        <td>{{data.fileCondition}}</td>
       </tr>
     </ng-template>
   </p-table>

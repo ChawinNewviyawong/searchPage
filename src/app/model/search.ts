@@ -1,36 +1,38 @@
-export interface Response {
+import { Services } from '@angular/core/src/view';
+
+export interface Search {
     clientID: number;
     data: Data;
     transaction: Transaction;
 }
 
-export interface Transaction {
-    blockHash: string;
-    transactionHash: string;
-}
-
 export interface Data {
     customerData: CustomerData;
     licenseData: LicenseData;
-    file: string;
 }
 
 export interface LicenseData {
     Licenses: License[];
-    Customer: string;
 }
 
 export interface License {
+    properties: Properties;
+    file: string;
     LicenseNo: string;
-    EffectiveYear: string;
-    IssueDate: string;
-    ExpireDate: string;
     LicenseTypeId: string;
     LicenseGroupTypeId: string;
-    LicenseType: string;
+    EffectiveYear: string;
+    ExpireDate: string;
+    IssueDate: string;
     Services: Service[];
-    FileCondition: string;
     FiledCondition: string;
+    LicenseType: string;
+}
+
+export interface Properties {
+    Services: Services[];
+    FiledCondition: string;
+    LicenseType: string;
 }
 
 export interface Service {
@@ -41,18 +43,29 @@ export interface Service {
 
 export interface CustomerData {
     Customer: Customer;
-    companyName: string;
 }
 
 export interface Customer {
-    JuristicNo: string;
-    Name: string;
-    Committees: Committee[];
-    Shareholders: Committee[];
-    TaxId: string;
-    RegisterAddress: string;
+    FileEvidences: FileEvidence[];
+    Shareholders: Shareholder[];
     ContactAddress: string;
     ContactPersons: ContactPerson[];
+    Committees: Committee[];
+    RegisterAddress: string;
+    JuristicNo: string;
+    TaxId: string;
+    Name: string;
+}
+
+export interface FileEvidence {
+    type: string;
+    fileName: string;
+    file: string;
+}
+
+export interface Shareholder {
+    IdCard: string;
+    Name: string;
 }
 
 export interface ContactPerson {
@@ -64,6 +77,11 @@ export interface ContactPerson {
 export interface Committee {
     IdCard: string;
     Name: string;
+}
+
+export interface Transaction {
+    blockHash: string;
+    transactionHash: string;
 }
 
 export interface SearchTable {
