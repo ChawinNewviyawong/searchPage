@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule, Table } from 'primeng/table';
 import { Search, SearchTable } from '../model/search';
@@ -9,7 +9,7 @@ import { SearchService } from '../search.service';
   templateUrl: './table-template.component.html',
   styleUrls: ['./table-template.component.css']
 })
-export class TableTemplateComponent implements OnInit {
+export class TableTemplateComponent implements OnChanges {
 
   @Input() licenses: Search[];
   public licensesList = [];
@@ -17,7 +17,7 @@ export class TableTemplateComponent implements OnInit {
 
   constructor(private searchService: SearchService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     let datas = {
       data: this.licenses,
     }
