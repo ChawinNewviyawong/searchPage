@@ -4,45 +4,54 @@
       <tr>
         <th [pSortableColumn]="'no'">
           เลขที่
-          <p-sortIcon [field]="'no'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          <p-sortIcon [field]="'no'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
         </th>
         <th [pSortableColumn]="'juristicNo'">
           เลขที่นิติบุคคล
-          <p-sortIcon [field]="'juristicNo'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          <p-sortIcon [field]="'juristicNo'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
         </th>
         <th [pSortableColumn]="'companyName'">
           ชื่อบริษัท
-          <p-sortIcon [field]="'companyName'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          <p-sortIcon [field]="'companyName'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
         </th>
         <th [pSortableColumn]="'licenseGroupType'">
           ประเภทใบอนุญาต
-          <p-sortIcon [field]="'licenseGroupType'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          <p-sortIcon [field]="'licenseGroupType'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
         </th>
         <th [pSortableColumn]="'licenseNo'">
           เลขที่ใบอนุญาต
-          <p-sortIcon [field]="'licenseNo'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          <p-sortIcon [field]="'licenseNo'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
         </th>
         <th [pSortableColumn]="'serviceId'">
           บริการที่ได้รับอนุญาต
-          <p-sortIcon [field]="'serviceId'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          <p-sortIcon [field]="'serviceId'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
         </th>
         <th [pSortableColumn]="'effectiveYear'">
           ปีที่ได้รับอนุญาต
-          <p-sortIcon [field]="'effectiveYear'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          <p-sortIcon [field]="'effectiveYear'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
         </th>
         <th [pSortableColumn]="'issueDate'">
           วันที่ได้รับอนุญาต
-          <p-sortIcon [field]="'issueDate'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          <p-sortIcon [field]="'issueDate'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
         </th>
         <th [pSortableColumn]="'expireDate'">
           วันที่สิ้นสุดการอนุญาต
-          <p-sortIcon [field]="'expireDate'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          <p-sortIcon [field]="'expireDate'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
         </th>
         <th>เงื่อนไข</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-license>
-      <tr >
+      <tr>
         <td>{{license.no}}</td>
         <td>{{license.juristicNo}}</td>
         <td>{{license.companyName}}</td>
@@ -52,7 +61,9 @@
         <td>{{license.effectiveYear}}</td>
         <td>{{license.issueDate}}</td>
         <td>{{license.expireDate}}</td>
-        <td>{{license.fileCondition}}</td>
+        <td>
+          <button type="button" pButton class="btn btn-primary pi pi-download" (click)="downloadFileCondition(license.fileCondition)" *ngIf='license.fileCondition'></button>
+        </td>
       </tr>
     </ng-template>
   </p-table>

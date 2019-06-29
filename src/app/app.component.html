@@ -9,36 +9,30 @@
   <div class="row">
     <div class="col-md-6">
       <label>เลขที่นิติบุคคล</label>
-      <input name='juristicNo' id="juristicNo" type="text" class="form-control" [(ngModel)]='form.juristicNo' placeholder="1234567890">
+      <input name='juristicNo' id="juristicNo" type="text" class="form-control" [(ngModel)]='form.juristicNo'
+        placeholder="1234567890">
     </div>
     <div class="col-md-6">
       <label>ชื่อผู้รับอนุญาต</label>
-      <input name='companyName' id="companyName" type="text" class="form-control" [(ngModel)]='form.companyName' placeholder="ชื่อ-นามสกุล">
+      <input name='companyName' id="companyName" type="text" class="form-control" [(ngModel)]='form.companyName'
+        placeholder="ชื่อ-นามสกุล">
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-md-3">
       <label>ประเภทใบอนุญาต</label>
-      <select name='licenseType' id="licenseType" class="form-control" [(ngModel)]='form.licenseType'>
-        <option>เลือกประเภทใบอนุญาต</option>
-        <option>ประเภทที่ 1</option>
-        <option>ประเภทที่ 2</option>
-        <option>ประเภทที่ 3</option>
-        <option>ประเภทที่ 4</option>
+      <select name='licenseGroupType' id="licenseGroupType" class="form-control" [(ngModel)]='form.licenseGroupType'>
+        <option hidden value="">เลือกประเภทใบอนุญาต</option>
+        <option *ngFor="let license of formConfig.licenseGroupType" value="{{license}}">{{license}}</option>
       </select>
     </div>
     <div class="col-md-3">
       <label>แบบใบอนุญาต</label>
-      <div class="dropdown">
-        <select name='licenseGroupType' id="licenseGroupType" class="form-control" [(ngModel)]='form.licenseGroupType'>
-          <option>เลือกแบบใบอนุญาต</option>
-          <option>แบบที่ 1</option>
-          <option>แบบที่ 2</option>
-          <option>แบบที่ 3</option>
-          <option>แบบที่ 4</option>
-        </select>
-      </div>
+      <select name='licenseType' id="licenseType" class="form-control" [(ngModel)]='form.licenseType'>
+        <option hidden value="">เลือกแบบใบอนุญาต</option>
+        <option *ngFor="let license of formConfig.licenseType" value="{{license}}">{{license}}</option>
+      </select>
     </div>
     <div class="col-md-6">
       <label>เลขที่ใบอนุญาต</label>
@@ -50,22 +44,16 @@
     <div class="col-md-6">
       <label>บริการที่ได้รับอนุญาต</label>
       <select name='service' id="service" class="form-control" [(ngModel)]='form.service'>
-        <option>เลือกบริการที่ได้รับอนุญาต</option>
-        <option>บริการที่ 1</option>
-        <option>บริการที่ 2</option>
-        <option>บริการที่ 3</option>
-        <option>บริการที่ 4</option>
+        <option hidden value="">เลือกบริการที่ได้รับอนุญาต</option>
+        <option *ngFor="let service of formConfig.service" value="{{service.id}}">{{service.name}}</option>
       </select>
     </div>
     <div class="col-md-6">
       <div ng-controller="yearselecter">
         <label>ปีที่ได้รับอนุญาต</label>
         <select name='effectiveYear' id="effectiveYear" class="form-control" [(ngModel)]='form.effectiveYear'>
-          <option>เลือกปีที่ได้รับอนุญาต</option>
-          <option>2562</option>
-          <option>2561</option>
-          <option>2560</option>
-          <option>2559</option>
+          <option hidden value="">เลือกปีที่ได้รับอนุญาต</option>
+          <option *ngFor="let year of formConfig.effectiveYear" value="{{year}}">{{year}}</option>
         </select>
       </div>
     </div>
@@ -80,11 +68,13 @@
             <div class="input-group-prepend">
               <span class="input-group-text">จากวันที่</span>
             </div>
-            <input class="form-control" name='issueDateBegin' id="issueDateBegin" type="text" [(ngModel)]='form.issueDateBegin' placeholder="วัน/เดือน/ปี">
+            <input class="form-control" name='issueDateBegin' id="issueDateBegin" type="text" [(ngModel)]='form.issueDateBegin'
+              placeholder="วัน/เดือน/ปี">
             <div class="input-group-prepend">
               <span class="input-group-text">ถึงวันที่</span>
             </div>
-            <input class="form-control" name='issueStartDateEnd' id="issueStartDateEnd" type="text" [(ngModel)]='form.issueStartDateEnd' placeholder="วัน/เดือน/ปี">
+            <input class="form-control" name='issueStartDateEnd' id="issueStartDateEnd" type="text" [(ngModel)]='form.issueStartDateEnd'
+              placeholder="วัน/เดือน/ปี">
           </div>
         </div>
       </div>
@@ -97,11 +87,13 @@
             <div class="input-group-prepend">
               <span class="input-group-text">จากวันที่</span>
             </div>
-            <input class="form-control" name='expireDateBegin' id="expireDateBegin" type="text" [(ngModel)]='form.expireDateBegin' placeholder="วัน/เดือน/ปี">
+            <input class="form-control" name='expireDateBegin' id="expireDateBegin" type="text" [(ngModel)]='form.expireDateBegin'
+              placeholder="วัน/เดือน/ปี">
             <div class="input-group-prepend">
               <span class="input-group-text">ถึงวันที่</span>
             </div>
-            <input class="form-control" name='expireDateEnd' id="expireDateEnd" type="text" [(ngModel)]='form.expireDateEnd' placeholder="วัน/เดือน/ปี">
+            <input class="form-control" name='expireDateEnd' id="expireDateEnd" type="text" [(ngModel)]='form.expireDateEnd'
+              placeholder="วัน/เดือน/ปี">
           </div>
         </div>
       </div>
@@ -110,8 +102,7 @@
   <br>
   <div class="row">
     <div class="col-md-12 text-center">
-      <button (click)="search(form)"
-        type="button" class="btn btn-primary" id="searchbtn">ค้นหา</button>
+      <button (click)="search(form)" type="button" class="btn btn-primary" id="searchbtn">ค้นหา</button>
     </div>
   </div>
 </form>

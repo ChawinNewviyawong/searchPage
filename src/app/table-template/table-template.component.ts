@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule, Table } from 'primeng/table';
 import { Search, SearchTable } from '../model/search';
+import { SearchService } from '../search.service';
 
 @Component({
   selector: 'app-table-template',
@@ -14,7 +15,7 @@ export class TableTemplateComponent implements OnInit {
   public licensesList = [];
   first: number = 0;
 
-  constructor() { }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
     let datas = {
@@ -50,7 +51,7 @@ export class TableTemplateComponent implements OnInit {
           item.effectiveYear = licenseData.EffectiveYear;
           item.issueDate = licenseData.IssueDate;
           item.expireDate = licenseData.ExpireDate;
-          item.fileCondition = licenseData.FiledCondition;
+          item.fileCondition = licenseData.file;
           item.serviceId = '';
           for (let i = 0; i < licenseData.Services.length; i++) {
             if (i < licenseData.Services.length - 1) {
@@ -65,6 +66,17 @@ export class TableTemplateComponent implements OnInit {
       }
     }
     console.log(this.licensesList);
+  }
+
+  downloadFileCondition(fileHash) {
+    this.searchService.getFileCondition(fileHash)
+      .subscribe(response => {
+        let type = "application/pdf";
+        let data = []
+        data.push(response);
+        let file = window.URL.createObjectURL(new Blob(data, {type: type}));
+        window.open(file);
+      });
   }
 
 }

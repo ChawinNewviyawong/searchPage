@@ -1,0 +1,26 @@
+{
+    "licenseGroupType": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
+    "licenseType": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
+    "service": [
+        { "id": "1", "name": "Service1"},
+        { "id": "2", "name": "Service2"},
+        { "id": "3", "name": "Service3"},
+        { "id": "4", "name": "Service4"},
+        { "id": "5", "name": "Service5"}
+    ],
+    "effectiveYear": [
+        2555,2556,2557,2558,2558,2559,2560,2561,2562,2563,2564,2565
+    ]
+}

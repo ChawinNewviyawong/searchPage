@@ -20,17 +20,31 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
+  getConfig() {
+    let configForm = 'assets/form-config/config.json';
+    return this.http.get(configForm);
+  }
+
   getLicense(body) {
     const url = environment.url + '/api/client/search';
     const httpOptions = {
       headers: headers,
     };
-    console.log(url);
     return this.http.post<Search[]>(url, body, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
-    // return this.http.post<Search[]>(url, body, httpOptions).toPromise().then(res => <Search[]>res).then(data => { return data; });
+  }
+
+  getFileCondition(fileName) {
+    const url = environment.url + '/api/client/download/' + fileName;
+    const httpOptions = {
+      headers: headers,
+    }
+    return this.http.get(url, { responseType: "blob" })
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: HttpErrorResponse) {

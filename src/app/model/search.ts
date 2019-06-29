@@ -25,7 +25,7 @@ export interface License {
     ExpireDate: string;
     IssueDate: string;
     Services: Service[];
-    FiledCondition: string;
+    FileCondition: string;
     LicenseType: string;
 }
 

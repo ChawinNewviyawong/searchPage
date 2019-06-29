@@ -25,6 +25,12 @@ export class AppComponent implements OnInit {
     licenseType: '',
     service: '',
   };
+  formConfig = {
+    licenseGroupType: '',
+    licenseType: '',
+    service: '',
+    effectiveYear: ''
+  };
   showTable = false;
   data: Search[];
 
@@ -48,10 +54,6 @@ export class AppComponent implements OnInit {
     }
 
     setInputFilter(document.getElementById("juristicNo"), function (value) {
-      return /^\d*\.?\d*$/.test(value);
-    });
-
-    setInputFilter(document.getElementById("licenseNo"), function (value) {
       return /^\d*\.?\d*$/.test(value);
     });
 
@@ -82,15 +84,20 @@ export class AppComponent implements OnInit {
         $('#expireDateEnd').datepicker('setStartDate', expireDateBegin);
       });
 
+    this.getConfig();
+  }
+
+  getConfig() {
+    this.searchService.getConfig()
+      .subscribe(data => this.formConfig = {
+        licenseGroupType: data['licenseGroupType'],
+        licenseType: data['licenseType'],
+        service: data['service'],
+        effectiveYear: data['effectiveYear']
+      })
   }
 
   search(form) {
-
-    if (form.effectiveYear == 'เลือกปีที่ได้รับอนุญาต') form.effectiveYear = null;
-    if (form.licenseGroupType == 'เลือกแบบใบอนุญาต') form.licenseGroupType = null;
-    if (form.licenseType == 'เลือกประเภทใบอนุญาต') form.licenseType = null;
-    if (form.service == 'เลือกบริการที่ได้รับอนุญาต') form.service = null;
-
     let body = {};
     if (form.companyName) body['companyName'] = '*' + form.companyName + '*';
     if (form.effectiveYear) body['effectiveYear'] = form.effectiveYear;
