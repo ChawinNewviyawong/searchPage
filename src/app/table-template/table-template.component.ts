@@ -11,9 +11,7 @@ import { Search, SearchTable } from '../model/search';
 export class TableTemplateComponent implements OnInit {
 
   @Input() licenses: Search[];
-  licensesList = {
-    license: [],
-  };
+  public licensesList = [];
   first: number = 0;
 
   constructor() { }
@@ -31,32 +29,38 @@ export class TableTemplateComponent implements OnInit {
   }
 
   mapField(datas) {
-    this.licensesList.license = [];
+    this.licensesList = [];
+
+    interface Type {
+      [key: string]: any
+    }
+
     let index = 1;
-    for (let license of datas.data) {
-      console.log(license);
-      let item = {};
-      if (license.data.customerData.Customer) {
-        item['juristicNo'] = license.data.customerData.Customer.JuristicNo;
-        item['companyName'] = license.data.customerData.Customer.Name;
-      }
-      if (license.data.licenseData.Licenses) {
-        for (let licenseData of license.data.licenseData.Licenses) {
-
-
-          item['licenseGroupType'] = licenseData.JuristicNo;
-          item['licenseNo'] = licenseData.LicenseNo;
-          item['effectiveYear'] = licenseData.EffectiveYear;
-          item['issueDate'] = licenseData.IssueDate;
-          item['expireDate'] = licenseData.ExpireDate;
-          item['fileCondition'] = licenseData.FiledCondition;
-
-          for (let service of licenseData.Services) {
-            item['no'] = index++;
-            item['serviceId'] = service.ServiceName;
-            this.licensesList.license.push(item);
+    for (let data of datas.data) {
+      if (data.data.licenseData.Licenses) {
+        for (let licenseData of data.data.licenseData.Licenses) {
+          let item: Type = {};
+          item.no = index++;
+          if (data.data.customerData.Customer) {
+            item.juristicNo = data.data.customerData.Customer.JuristicNo;
+            item.companyName = data.data.customerData.Customer.Name;
           }
-
+          item.licenseGroupType = licenseData.LicenseGroupTypeId;
+          item.licenseNo = licenseData.LicenseNo;
+          item.effectiveYear = licenseData.EffectiveYear;
+          item.issueDate = licenseData.IssueDate;
+          item.expireDate = licenseData.ExpireDate;
+          item.fileCondition = licenseData.FiledCondition;
+          item.serviceId = '';
+          for (let i = 0; i < licenseData.Services.length; i++) {
+            if (i < licenseData.Services.length - 1) {
+              item.serviceId = (item.serviceId).concat(licenseData.Services[i].ServiceName, ',');
+            }
+            else {
+              item.serviceId = (item.serviceId).concat(licenseData.Services[i].ServiceName);
+            }
+          }
+          this.licensesList.push(item);
         }
       }
     }

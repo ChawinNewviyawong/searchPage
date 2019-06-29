@@ -20,7 +20,7 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  getLicense(body): Observable<Search[]> {
+  getLicense(body) {
     const url = environment.url + '/api/client/search';
     const httpOptions = {
       headers: headers,
@@ -30,6 +30,7 @@ export class SearchService {
       .pipe(
         catchError(this.handleError)
       );
+    // return this.http.post<Search[]>(url, body, httpOptions).toPromise().then(res => <Search[]>res).then(data => { return data; });
   }
 
   private handleError(error: HttpErrorResponse) {

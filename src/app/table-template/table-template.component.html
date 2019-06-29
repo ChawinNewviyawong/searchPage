@@ -1,31 +1,58 @@
 <div class="container">
-  <p-table [value]="this.licensesList.license" [paginator]="true" [rows]="10" [first]="first">
+  <p-table [value]="licensesList" [paginator]="true" [rows]="10" [first]="first" [tableStyle]="{'table-layout':'auto'}">
     <ng-template pTemplate="header">
       <tr>
-        <th>เลขที่</th>
-        <th>เลขที่นิติบุคคล</th>
-        <th>ชื่อบริษัท</th>
-        <th>ประเภทใบอนุญาต</th>
-        <th>เลขที่ใบอนุญาต</th>
-        <th>บริการที่ได้รับอนุญาต</th>
-        <th>ปีที่ได้รับอนุญาต</th>
-        <th>วันที่ได้รับอนุญาต</th>
-        <th>วันที่สิ้นสุดการอนุญาต</th>
+        <th [pSortableColumn]="'no'">
+          เลขที่
+          <p-sortIcon [field]="'no'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
+        <th [pSortableColumn]="'juristicNo'">
+          เลขที่นิติบุคคล
+          <p-sortIcon [field]="'juristicNo'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
+        <th [pSortableColumn]="'companyName'">
+          ชื่อบริษัท
+          <p-sortIcon [field]="'companyName'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
+        <th [pSortableColumn]="'licenseGroupType'">
+          ประเภทใบอนุญาต
+          <p-sortIcon [field]="'licenseGroupType'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
+        <th [pSortableColumn]="'licenseNo'">
+          เลขที่ใบอนุญาต
+          <p-sortIcon [field]="'licenseNo'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
+        <th [pSortableColumn]="'serviceId'">
+          บริการที่ได้รับอนุญาต
+          <p-sortIcon [field]="'serviceId'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
+        <th [pSortableColumn]="'effectiveYear'">
+          ปีที่ได้รับอนุญาต
+          <p-sortIcon [field]="'effectiveYear'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
+        <th [pSortableColumn]="'issueDate'">
+          วันที่ได้รับอนุญาต
+          <p-sortIcon [field]="'issueDate'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
+        <th [pSortableColumn]="'expireDate'">
+          วันที่สิ้นสุดการอนุญาต
+          <p-sortIcon [field]="'expireDate'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
         <th>เงื่อนไข</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-licensesList.license>
-      <tr *ngFor='let data of this.licensesList.license'>
-        <td>{{data.no}}</td>
-        <td>{{data.juristicNo}}</td>
-        <td>{{data.companyName}}</td>
-        <td>{{data.licenseGroupType}}</td>
-        <td>{{data.licenseNo}}</td>
-        <td>{{data.serviceId}}</td>
-        <td>{{data.effectiveYear}}</td>
-        <td>{{data.issueDate}}</td>
-        <td>{{data.expireDate}}</td>
-        <td>{{data.fileCondition}}</td>
+    <ng-template pTemplate="body" let-license>
+      <tr >
+        <td>{{license.no}}</td>
+        <td>{{license.juristicNo}}</td>
+        <td>{{license.companyName}}</td>
+        <td>{{license.licenseGroupType}}</td>
+        <td>{{license.licenseNo}}</td>
+        <td>{{license.serviceId}}</td>
+        <td>{{license.effectiveYear}}</td>
+        <td>{{license.issueDate}}</td>
+        <td>{{license.expireDate}}</td>
+        <td>{{license.fileCondition}}</td>
       </tr>
     </ng-template>
   </p-table>
