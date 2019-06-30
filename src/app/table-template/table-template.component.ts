@@ -3,6 +3,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TableModule, Table } from 'primeng/table';
 import { Search, SearchTable } from '../model/search';
 import { SearchService } from '../search.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-table-template',
@@ -71,11 +72,20 @@ export class TableTemplateComponent implements OnChanges {
   downloadFileCondition(fileHash) {
     this.searchService.getFileCondition(fileHash)
       .subscribe(response => {
+        console.log(response);
         let type = "application/pdf";
         let data = []
         data.push(response);
-        let file = window.URL.createObjectURL(new Blob(data, {type: type}));
-        window.open(file);
+        // const file = document.createElement('a');
+        // file.href = URL.createObjectURL(response._body);
+        // file.download = 
+        // let file = window.URL.createObjectURL(new Blob(data, { type: type }));
+        // window.open(file);
+        var file = document.createElement('a');
+        file.href = window.URL.createObjectURL(new Blob(data, { type: type }));
+        
+        file.download = "condition" + formatDate(new Date(), 'yyyy/MM/dd', 'en');
+        file.click();
       });
   }
 

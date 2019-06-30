@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable, throwError } from 'rxjs';
@@ -41,7 +41,12 @@ export class SearchService {
     const httpOptions = {
       headers: headers,
     }
-    return this.http.get(url, { responseType: "blob" })
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'API_KEY': 'byCqSJgvw6k2awJpOUhfsZbj'
+      }), responseType: 'blob'
+    })
       .pipe(
         catchError(this.handleError)
       );
