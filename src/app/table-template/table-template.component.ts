@@ -80,7 +80,7 @@ export class TableTemplateComponent implements OnChanges {
         // window.open(window.URL.createObjectURL(blob));
         var file = document.createElement('a');
         file.href = window.URL.createObjectURL(blob);
-        file.download = "condition" + formatDate(new Date(), 'yyyy/MM/dd', 'en');
+        file.download = "condition" + formatDate(new Date(), 'yyyyMMdd', 'en');
         file.click();
       });
   }
