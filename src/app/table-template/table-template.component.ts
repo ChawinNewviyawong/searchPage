@@ -76,14 +76,10 @@ export class TableTemplateComponent implements OnChanges {
         let type = "application/pdf";
         let data = []
         data.push(response);
-        // const file = document.createElement('a');
-        // file.href = URL.createObjectURL(response._body);
-        // file.download = 
-        // let file = window.URL.createObjectURL(new Blob(data, { type: type }));
-        // window.open(file);
+        let blob = new Blob(data, { type: type });
+        // window.open(window.URL.createObjectURL(blob));
         var file = document.createElement('a');
-        file.href = window.URL.createObjectURL(new Blob(data, { type: type }));
-        
+        file.href = window.URL.createObjectURL(blob);
         file.download = "condition" + formatDate(new Date(), 'yyyy/MM/dd', 'en');
         file.click();
       });

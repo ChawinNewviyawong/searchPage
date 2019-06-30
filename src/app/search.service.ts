@@ -45,7 +45,7 @@ export class SearchService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'API_KEY': 'byCqSJgvw6k2awJpOUhfsZbj'
-      }), responseType: 'blob'
+      }), responseType: 'blob'//, observe: 'response'
     })
       .pipe(
         catchError(this.handleError)
