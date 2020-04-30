@@ -23,7 +23,7 @@
     "bootstrap": "^4.3.1",
     "bootstrap-datepicker": "^1.8.0",
     "core-js": "^2.5.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "popper.js": "^1.14.7",
     "primeicons": "^1.0.0",
     "primeng": "^7.1.2",
